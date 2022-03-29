@@ -1,0 +1,20 @@
+services:
+  burpsuite:
+    container_name: burpsuite
+    hostname: burpsuite    
+    build: .
+    restart: "no"
+    privileged: false
+    environment:
+      - DISPLAY
+    volumes:
+      - "${HOME}:/home/burpsuite"
+      - "/tmp/.X11-unix/:/tmp/.X11-unix/"
+    ports:
+      - "8080:8080"
+    networks:
+      - burpsuite
+networks:
+  burpsuite:
+    driver: bridge
+    name: burpsuite
